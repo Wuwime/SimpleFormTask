@@ -1,0 +1,109 @@
+@using System.Text.Json.Serialization
+@model SimpleForm.Models.FormViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+
+<html lang="cz">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+
+<div>
+    <h3>LOGO</h3>
+    <h1>NADPIS</h1>
+
+
+    @if (Model is not null)
+    {
+        @if (Model.FormInput is not null)
+        {
+            <form asp-action="GetJsonResult" asp-controller="Form">
+                <div>
+                    <label for="name">Jméno</label>
+                    <input type="text" name="name" value="@Model.FormInput.Name" required>
+                    <label for="surName">Příjmení</label>
+                    <input type="text" name="surName" value="@Model.FormInput.SurName" required>
+                </div>
+                <div>
+                    <label for="email">E-mail</label>
+                    <input type="Text" name="email" value="@Model.FormInput.Email" required>
+                    @if (Model.Alert is not null)
+                    {
+                        <p style="color: red">@Model.Alert</p>
+                    }
+                    <br>
+                    <label for="birth">Datum narození</label>
+                    <input type="date" name="birth" required>
+                    <br>
+                    <label for="regionIndex">Kraj</label>
+                    <select>
+                        @for (int i = 0; i< Model.ListOfRegions.Count;i++)
+                        {
+                            <option name="regionIndex" value="@i">@Model.ListOfRegions[i]</option>
+                        }
+                    </select>
+                    <label for="react">REACT</label>
+                    <input type="checkbox" name="react" value="@Model.FormInput.React">
+                    <br>
+                    <button type="submit">Uložit</button>
+                </div>
+            </form>
+        }
+        else
+        {
+            <form asp-action="GetJsonResult" asp-controller="Form">
+                <div>
+                    <label for="name">Jméno</label>
+                    <input type="text" name="name" required>
+                    <label for="surName">Příjmení</label>
+                    <input type="text" name="surName" required>
+                </div>
+                <div>
+                    <label for="email">E-mail</label>
+                    <input type="Text" name="email" required>
+                    <br>
+                    <label for="birth">Datum narození</label>
+                    <input type="date" name="birth" required>
+                    <br>
+                    <label for="regionIndex">Kraj</label>
+                </div>
+                <select>
+                    @for (int i =0; i< Model.ListOfRegions.Count;i++)
+                    {
+                        <option name="regionIndex" value="@i">@Model.ListOfRegions[i]</option>
+                    }
+
+                </select>
+            <br>
+                <label for="react">REACT</label>
+                <input type="checkbox" name="react" value="Yes">
+                <br>
+                <button type="submit">Uložit</button>
+            </form>
+        }
+        <form asp-action="FromJsonToForm" asp-controller="Form" method="post">
+            <button type="submit">Načíst</button>
+            <br>
+
+            @if (!string.IsNullOrEmpty(Model.TextAreaInputString))
+            {
+                <textarea style="resize: none" rows="10" cols="50" name="textAreaInput">
+         @Model.TextAreaInputString
+          </textarea>
+                @if (Model.Alert is not null)
+                {
+                    <p style="color: red">@Model.Alert</p>
+                }
+            }
+            else
+            {
+                <textarea style="resize: none" rows="10" cols="50" name="textAreaInput"></textarea>
+            }
+        </form>
+    }
+
+</div>
+</body>
+</html>
