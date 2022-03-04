@@ -21,11 +21,11 @@ namespace SimpleForm.Controllers
         }
 
         [HttpPost("save")]
-        public IActionResult GetJsonResult([FromForm] FormInputModel saveRequest)
+        public IActionResult GetJsonResult([FromForm] FormInputModel saveRequest)// accepts request
         {
             int statusCode = 0;
-            var response = FormService.CreateAreaInputModel(saveRequest, out statusCode);
-            if (statusCode == 200)
+            var response = FormService.CreateAreaInputModel(saveRequest, out statusCode);//sends request to the service and returns response with json in string
+            if (statusCode == 200)//in case everything's alright, returns 200 status code. Otherwise, returns alert.
             {
                 return View("FormPage",
                     new FormViewModel()
@@ -46,8 +46,8 @@ namespace SimpleForm.Controllers
         [HttpPost("load")]
         public IActionResult FromJsonToForm([FromForm] string textAreaInput)
         {
-            var response = FormService.CreateFormInputModel(textAreaInput, out int statusCode);
-            if (statusCode == 200)
+            var response = FormService.CreateFormInputModel(textAreaInput, out int statusCode);//receives string, sends it to the service and returns json object
+            if (statusCode == 200)//just like up above, if everything went well, returns 200, otherwise you should get alert 
             {
                 return View("FormPage",
                     new FormViewModel() {FormInput = response, ListOfRegions = FormService.ListOfRegions()});

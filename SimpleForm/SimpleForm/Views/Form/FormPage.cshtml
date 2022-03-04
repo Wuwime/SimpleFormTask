@@ -21,7 +21,7 @@
     {
         @if (Model.FormInput is not null)
         {
-            <form asp-action="GetJsonResult" asp-controller="Form">
+            <form asp-action="GetJsonResult" asp-controller="Form">@*here starts the first form*@
                 <div>
                     <label for="name" class="namelabel">Jméno</label>
                     <input class="field name" type="text" id="name" name="name" value="@Model.FormInput.Name" required>
@@ -31,7 +31,7 @@
                 <div>
                     <label for="email" class="email emaillabel" >E-mail</label>
                     <input class="field email" type="Text" name="email" value="@Model.FormInput.Email" required>
-                    @if (Model.Alert is not null)
+                    @if (Model.Alert is not null)@*if email is not valid, we get an alert*@
                     {
                         <p style="color: red">@Model.Alert</p>
                     }
@@ -41,7 +41,7 @@
                     <br>
                     <label for="regionIndex" class="regionlabel">Kraj</label>
                     <select class="field region">
-                        @for (int i = 0; i< Model.ListOfRegions.Count;i++)
+                        @for (int i = 0; i< Model.ListOfRegions.Count;i++)@*listing regions*@
                         {
                             <option name="regionIndex" value="@i">@Model.ListOfRegions[i]</option>
                         }
@@ -71,7 +71,7 @@
                     <br>
                     <label for="regionIndex" class="regionlabel">Kraj</label>
                 </div>
-                <select class="field" id="region">
+                <select class="field" id="region">@*listing regions again*@
                     @for (int i =0; i< Model.ListOfRegions.Count;i++)
                     {
                         <option name="regionIndex" value="@i">@Model.ListOfRegions[i]</option>
@@ -85,16 +85,16 @@
                 <button type="submit">Uložit</button>
             </form>
         }
-        <form asp-action="FromJsonToForm" asp-controller="Form" method="post">
+        <form asp-action="FromJsonToForm" asp-controller="Form" method="post">@*second form*@
             <button type="submit" id="loadbutton">Načíst</button>
             <br>
 
-            @if (!string.IsNullOrEmpty(Model.TextAreaInputString))
+            @if (!string.IsNullOrEmpty(Model.TextAreaInputString))@*if there is text to be in the text area sent in response, this is where it gets processed*@
             {
                 <textarea class="field" style="resize: none" rows="10" cols="50" name="textAreaInput">
          @Model.TextAreaInputString
           </textarea>
-                @if (Model.Alert is not null)
+                @if (Model.Alert is not null)@*here come different kinds of alert. Depends on the status code*@
                 {
                     <p style="color: red">@Model.Alert</p>
                 }
