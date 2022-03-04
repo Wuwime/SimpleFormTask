@@ -1,0 +1,84 @@
+.name{
+    position: absolute;
+    margin-bottom: 5px;
+}
+.surName {
+    position: absolute;
+    margin-left: 270px;
+    margin-top: 2px;
+}
+button{
+    background-color: white;
+    color: black;
+    padding: 20px;
+    border: solid 3px black;
+    border-radius: 5px;
+    width: 150px;
+}
+#loadbutton{
+    position: absolute;
+    margin-left: 280px;
+    margin-top: -60px;
+}
+.birth{
+    position: absolute;
+    margin-left: 270px;
+    margin-top: 1px;
+}
+.birthlabel{
+    position: relative;
+    margin-left: 270px;
+    margin-top: -62px;
+    margin-bottom: 0px;
+}
+.regionlabel{
+    margin-top: 50px;
+    margin-bottom: 3px;
+}
+.surNameLabel{
+    position: relative;
+    margin-left: 270px;
+    margin-top: -20px;
+    margin-bottom: 0px;
+}
+.emaillabel{
+    margin-top: 70px;
+}
+label{
+    
+    margin-top: 20px;
+}
+#region{
+    width: 430px;
+}
+body
+{
+    max-width: 450px;
+    margin: auto;
+    font-family: 'Smooch Sans', sans-serif;
+    font-weight: lighter;
+}
+
+h3{
+    position: absolute;
+    margin-top: 5px;
+}
+h1{
+    position: relative;
+    padding-left: 200px;
+}
+.field{
+    border: solid 3px black;
+    border-radius: 5px;
+}
+
+input, label {
+    display:block;
+}
+
+
+@media screen and (max-width: 800px) {
+    .left, .main, .right {
+        width: 100%; 
+    }
+}

@@ -63,7 +63,7 @@ namespace SimpleForm.Services
                         !string.IsNullOrEmpty(formInput.SurName) && !string.IsNullOrEmpty(formInput.Name))
                     {
                         var indexOfRegion = ListOfRegions().IndexOf(formInput.Region);
-                        bool react;
+                        
                         if (formInput.React.Equals("Yes") || formInput.React.Equals("No"))
                         {
                             if (formInput.React.Equals("Yes"))
